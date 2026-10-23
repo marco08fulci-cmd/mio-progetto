@@ -1,416 +1,705 @@
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ciao sono Marco 🚀</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciao Marco</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Space Grotesk -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                            800: '#991b1b',
+                            900: '#7f1d1d',
+                            950: '#450a0a',
+                        },
+                        dark: {
+                            base: '#070709',
+                            surface: '#0f0f14',
+                            card: '#16161d',
+                            border: '#24242e',
+                            hover: '#1e1e28'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom smooth scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #070709;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #24242e;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #991b1b;
+        }
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Space+Grotesk:wght@400;700&display=swap');
+        /* Subtle glowing elements */
+        .glow-red {
+            box-shadow: 0 0 50px -10px rgba(220, 38, 38, 0.25);
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    cursor: crosshair;
-}
+        .card-glow:hover {
+            box-shadow: 0 10px 30px -10px rgba(220, 38, 38, 0.2);
+            border-color: rgba(220, 38, 38, 0.4);
+            transform: translateY(-2px);
+        }
 
-:root {
-    --pink: #ff00c8;
-    --blue: #00f7ff;
-    --yellow: #eaff00;
-}
+        /* Glassmorphism effects */
+        .glass-panel {
+            background: rgba(15, 15, 20, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
 
-body {
-    min-height: 100vh;
-    overflow-x: hidden;
-    color: white;
-    font-family: 'Space Grotesk', sans-serif;
-    background: #080014;
-    animation: bg 12s infinite alternate;
-}
-
-@keyframes bg {
-    0% { background-color: #080014; }
-    33% { background-color: #20002c; }
-    66% { background-color: #001d35; }
-    100% { background-color: #280013; }
-}
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: -50%;
-    pointer-events: none;
-    z-index: -1;
-    background: repeating-conic-gradient(
-        from 0deg,
-        #ff00c8 0deg 5deg,
-        transparent 5deg 15deg,
-        #00f7ff 15deg 20deg,
-        transparent 20deg 30deg
-    );
-    opacity: .12;
-    animation: spin 80s linear infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 28px 7%;
-    font-weight: bold;
-    letter-spacing: 3px;
-}
-
-.logo {
-    color: var(--yellow);
-    text-shadow: 0 0 20px var(--yellow);
-    font-size: 1.4rem;
-}
-
-.tag {
-    border: 1px solid var(--blue);
-    padding: 10px 16px;
-    border-radius: 50px;
-    color: var(--blue);
-    box-shadow: 0 0 20px #00f7ff33;
-}
-
-main {
-    min-height: 78vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 60px 20px;
-    position: relative;
-}
-
-.eyebrow {
-    color: var(--yellow);
-    font-size: 14px;
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    margin-bottom: 30px;
-    animation: blink 1s infinite alternate;
-}
-
-@keyframes blink {
-    to { opacity: .3; }
-}
-
-h1 {
-    font-family: 'Rubik Mono One', sans-serif;
-    font-size: clamp(3rem, 11vw, 9rem);
-    line-height: .98;
-    letter-spacing: -5px;
-    text-transform: uppercase;
-    transform: rotate(-3deg);
-    animation: float 4s ease-in-out infinite;
-    filter: drop-shadow(0 0 15px #ff00c866);
-}
-
-@keyframes float {
-    0%, 100% { transform: rotate(-3deg) translateY(0); }
-    50% { transform: rotate(2deg) translateY(-18px); }
-}
-
-h1 span {
-    display: block;
-    color: transparent;
-    -webkit-text-stroke: 2px var(--blue);
-    text-shadow: 0 0 30px #00f7ff66;
-}
-
-h1 .marco {
-    color: var(--pink);
-    -webkit-text-stroke: 0;
-    text-shadow:
-        5px 5px 0 var(--blue),
-        10px 10px 0 #ffea00,
-        0 0 60px var(--pink);
-}
-
-.subtitle {
-    margin-top: 40px;
-    font-size: clamp(1rem, 2vw, 1.4rem);
-    max-width: 600px;
-    line-height: 1.7;
-    color: #d9d1ec;
-}
-
-.subtitle b {
-    color: var(--yellow);
-}
-
-.buttons {
-    margin-top: 35px;
-    display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-button {
-    padding: 17px 26px;
-    border: none;
-    font-family: inherit;
-    font-weight: bold;
-    font-size: 1rem;
-    transition: .25s;
-    cursor: pointer;
-}
-
-.primary {
-    background: var(--pink);
-    color: white;
-    box-shadow: 0 0 25px #ff00c877;
-    transform: skew(-5deg);
-}
-
-.secondary {
-    background: transparent;
-    border: 2px solid var(--blue);
-    color: var(--blue);
-}
-
-button:hover {
-    transform: scale(1.12) rotate(-2deg);
-    box-shadow: 0 0 35px var(--blue);
-}
-
-.sticker {
-    position: absolute;
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    filter: drop-shadow(0 0 15px #ffffff55);
-    animation: wiggle 3s infinite ease-in-out;
-    user-select: none;
-}
-
-.s1 { top: 16%; left: 10%; }
-.s2 { top: 20%; right: 12%; animation-delay: -1s; }
-.s3 { bottom: 12%; left: 14%; animation-delay: -2s; }
-.s4 { bottom: 10%; right: 14%; animation-delay: -.5s; }
-
-@keyframes wiggle {
-    0%, 100% { transform: rotate(-15deg) translateY(0); }
-    50% { transform: rotate(15deg) translateY(-25px); }
-}
-
-.marquee {
-    overflow: hidden;
-    white-space: nowrap;
-    background: var(--yellow);
-    color: #10001b;
-    padding: 17px 0;
-    font-family: 'Rubik Mono One', sans-serif;
-    font-size: 1.1rem;
-    transform: rotate(-2deg) scale(1.05);
-    margin: 25px 0;
-}
-
-.marquee div {
-    display: inline-block;
-    animation: scroll 18s linear infinite;
-}
-
-@keyframes scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-}
-
-footer {
-    padding: 35px;
-    text-align: center;
-    font-size: .8rem;
-    letter-spacing: 4px;
-    color: #8e83a9;
-}
-
-#chaos {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    pointer-events: none;
-}
-
-.particle {
-    position: fixed;
-    pointer-events: none;
-    font-size: 28px;
-    animation: explode 1.5s ease-out forwards;
-}
-
-@keyframes explode {
-    0% {
-        opacity: 1;
-        transform: translate(0, 0) scale(.3) rotate(0deg);
-    }
-    100% {
-        opacity: 0;
-        transform: translate(var(--x), var(--y))
-                   scale(2) rotate(720deg);
-    }
-}
-
-body.party {
-    animation: party .25s infinite alternate;
-}
-
-@keyframes party {
-    from { filter: hue-rotate(0deg); }
-    to { filter: hue-rotate(180deg); }
-}
-
-@media (max-width: 600px) {
-    nav { padding: 22px 5%; }
-    .tag { font-size: 10px; letter-spacing: 1px; }
-    h1 { letter-spacing: -2px; }
-    .s1 { left: 3%; }
-    .s2 { right: 3%; }
-    .s3 { left: 4%; }
-    .s4 { right: 4%; }
-}
-</style>
+        .hero-text-gradient {
+            background: linear-gradient(135deg, #ffffff 30%, #fca5a5 70%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
 </head>
+<body class="bg-dark-base text-zinc-100 font-sans min-h-screen flex flex-col antialiased selection:bg-brand-900 selection:text-white">
 
-<body>
+    <!-- Top Floating Header -->
+    <header class="sticky top-0 z-30 glass-panel border-b border-dark-border/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-600 to-brand-900 flex items-center justify-center shadow-md shadow-brand-950/60 border border-brand-500/30">
+                    <i data-lucide="sparkles" class="w-4 h-4 text-white"></i>
+                </div>
+                <span class="font-display font-bold text-lg tracking-tight text-white">Ciao Marco</span>
+            </div>
 
-<nav>
-    <div class="logo">★ MARCO.EXE</div>
-    <div class="tag">ONLINE ● 100%</div>
-</nav>
+            <button onclick="openModal()" class="flex items-center space-x-2 bg-brand-700 hover:bg-brand-600 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-all shadow-lg shadow-brand-950/50 border border-brand-500/30 active:scale-95">
+                <i data-lucide="plus" class="w-4 h-4"></i>
+                <span class="hidden sm:inline">Nuovo Lavoro</span>
+            </button>
+        </div>
+    </header>
 
-<main>
-    <div class="sticker s1">👽</div>
-    <div class="sticker s2">💿</div>
-    <div class="sticker s3">🛸</div>
-    <div class="sticker s4">🔥</div>
+    <!-- SECTION 1: HERO TITLE "Ciao Marco" -->
+    <section class="relative pt-16 pb-20 overflow-hidden border-b border-dark-border/50">
+        <!-- Ambient red lighting background -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] bg-brand-600/15 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute -top-10 left-1/4 w-72 h-72 bg-brand-900/10 rounded-full blur-[90px] pointer-events-none"></div>
 
-    <div class="eyebrow">⚡ ATTENZIONE: PERSONALITÀ INSTABILE ⚡</div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-dark-card border border-brand-600/30 text-brand-400 text-xs font-medium mb-6 shadow-xl">
+                <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                <span>Area Personale & Workspace</span>
+            </div>
 
-    <h1>
-        CIAO SONO
-        <span class="marco">MARCO</span>
-        <span>🚀</span>
-    </h1>
+            <!-- Monumental Title -->
+            <h1 class="font-display text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tight hero-text-gradient mb-6 leading-none">
+                Ciao Marco
+            </h1>
 
-    <p class="subtitle">
-        Non sono un bug.<br>
-        Sono una <b>FEATURE NON RICHIESTA.</b><br>
-        Benvenuti nel mio universo. 🌌
-    </p>
+            <p class="max-w-2xl mx-auto text-zinc-400 text-sm sm:text-base font-normal leading-relaxed">
+                Piattaforma di gestione e organizzazione dei tuoi progetti. Crea, cataloga e monitora i tuoi lavori in un ambiente scuro, sobrio e raffinato.
+            </p>
+        </div>
+    </section>
 
-    <div class="buttons">
-        <button class="primary" onclick="explode()">
-            NON CLICCARE 💥
-        </button>
+    <!-- SECTION 2: DASHBOARD & WORKSPACE -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8">
 
-        <button class="secondary" onclick="location.href='#about'">
-            SCOPRI IL MITO ↓
-        </button>
+        <!-- Statistiche Rapide -->
+        <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-dark-card border border-dark-border p-5 rounded-2xl flex items-center justify-between">
+                <div>
+                    <p class="text-[11px] uppercase font-bold text-zinc-500 tracking-wider">Totali</p>
+                    <h3 id="stat-total" class="text-2xl font-bold text-white mt-1">0</h3>
+                </div>
+                <div class="p-3 bg-zinc-900 rounded-xl border border-zinc-800 text-zinc-300">
+                    <i data-lucide="layers" class="w-5 h-5"></i>
+                </div>
+            </div>
+
+            <div class="bg-dark-card border border-dark-border p-5 rounded-2xl flex items-center justify-between">
+                <div>
+                    <p class="text-[11px] uppercase font-bold text-zinc-500 tracking-wider">Pianificati</p>
+                    <h3 id="stat-planned" class="text-2xl font-bold text-blue-400 mt-1">0</h3>
+                </div>
+                <div class="p-3 bg-blue-500/10 rounded-xl border border-blue-500/20 text-blue-400">
+                    <i data-lucide="compass" class="w-5 h-5"></i>
+                </div>
+            </div>
+
+            <div class="bg-dark-card border border-dark-border p-5 rounded-2xl flex items-center justify-between">
+                <div>
+                    <p class="text-[11px] uppercase font-bold text-zinc-500 tracking-wider">In Corso</p>
+                    <h3 id="stat-progress" class="text-2xl font-bold text-amber-400 mt-1">0</h3>
+                </div>
+                <div class="p-3 bg-amber-500/10 rounded-xl border border-amber-500/20 text-amber-400">
+                    <i data-lucide="loader" class="w-5 h-5"></i>
+                </div>
+            </div>
+
+            <div class="bg-dark-card border border-dark-border p-5 rounded-2xl flex items-center justify-between">
+                <div>
+                    <p class="text-[11px] uppercase font-bold text-zinc-500 tracking-wider">Completati</p>
+                    <h3 id="stat-completed" class="text-2xl font-bold text-emerald-400 mt-1">0</h3>
+                </div>
+                <div class="p-3 bg-emerald-500/10 rounded-xl border border-emerald-500/20 text-emerald-400">
+                    <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Barra di Ricerca Prominente e Filtri -->
+        <section class="bg-dark-card border border-dark-border rounded-2xl p-4 sm:p-6 shadow-xl space-y-4">
+            <div class="flex flex-col lg:flex-row items-stretch lg:items-center gap-4">
+                
+                <!-- Input di Ricerca Prominente -->
+                <div class="relative flex-grow">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-brand-500">
+                        <i data-lucide="search" class="w-5 h-5"></i>
+                    </div>
+                    <input type="text" id="search-input" oninput="renderProjects()" 
+                        placeholder="Cerca i tuoi lavori per titolo, descrizione o tag..." 
+                        class="w-full pl-12 pr-10 py-3.5 bg-dark-surface border border-dark-border rounded-xl text-zinc-100 placeholder-zinc-500 text-sm focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 transition-all shadow-inner">
+                    <button id="clear-search" onclick="clearSearch()" class="hidden absolute inset-y-0 right-0 pr-4 flex items-center text-zinc-500 hover:text-white transition-colors">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+
+                <!-- Pulsanti Filtro Stato -->
+                <div class="flex items-center space-x-2 overflow-x-auto pb-1 lg:pb-0">
+                    <button onclick="setFilterStatus('all')" id="filter-all" class="filter-btn px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap border bg-brand-900/40 text-brand-300 border-brand-600/60 transition-all">
+                        Tutti i Lavori
+                    </button>
+                    <button onclick="setFilterStatus('planned')" id="filter-planned" class="filter-btn px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap border bg-dark-surface text-zinc-400 border-dark-border hover:border-zinc-700 transition-all">
+                        Pianificati
+                    </button>
+                    <button onclick="setFilterStatus('in-progress')" id="filter-in-progress" class="filter-btn px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap border bg-dark-surface text-zinc-400 border-dark-border hover:border-zinc-700 transition-all">
+                        In Corso
+                    </button>
+                    <button onclick="setFilterStatus('completed')" id="filter-completed" class="filter-btn px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap border bg-dark-surface text-zinc-400 border-dark-border hover:border-zinc-700 transition-all">
+                        Completati
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Griglia dei Lavori -->
+        <section>
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Rendered dynamically -->
+            </div>
+
+            <!-- Nessun Risultato State -->
+            <div id="empty-state" class="hidden py-16 text-center border border-dashed border-dark-border rounded-2xl bg-dark-card/30">
+                <div class="w-14 h-14 mx-auto mb-4 rounded-full bg-brand-950/40 border border-brand-800/30 flex items-center justify-center text-brand-500">
+                    <i data-lucide="folder-open" class="w-7 h-7"></i>
+                </div>
+                <h3 class="text-base font-semibold text-white">Nessun lavoro trovato</h3>
+                <p class="text-zinc-400 text-xs max-w-sm mx-auto mt-1 mb-5">Non ci sono progetti che corrispondono ai criteri di ricerca o ai filtri scelti.</p>
+                <button onclick="openModal()" class="inline-flex items-center space-x-2 bg-brand-700 hover:bg-brand-600 text-white font-medium px-4 py-2 rounded-xl text-xs transition-all shadow-lg">
+                    <i data-lucide="plus" class="w-4 h-4"></i>
+                    <span>Aggiungi Un Nuovo Lavoro</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modale Aggiungi / Modifica Lavoro -->
+    <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div onclick="closeModal()" class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+
+        <div class="relative w-full max-w-xl bg-dark-surface border border-dark-border rounded-2xl shadow-2xl overflow-hidden transform scale-95 transition-transform duration-300" id="modal-container">
+            <div class="px-6 py-4 border-b border-dark-border flex items-center justify-between bg-dark-card">
+                <div class="flex items-center space-x-2">
+                    <div class="w-2.5 h-2.5 rounded-full bg-brand-600"></div>
+                    <h3 id="modal-title" class="text-base font-bold text-white">Nuovo Lavoro</h3>
+                </div>
+                <button onclick="closeModal()" class="text-zinc-400 hover:text-white p-1 rounded-lg hover:bg-dark-border transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <form id="project-form" onsubmit="handleFormSubmit(event)" class="p-6 space-y-4 max-h-[80vh] overflow-y-auto">
+                <input type="hidden" id="project-id">
+
+                <div>
+                    <label class="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">Titolo Lavoro *</label>
+                    <input type="text" id="form-title" required placeholder="Es. Design e sviluppo nuovo sito web" 
+                        class="w-full px-3.5 py-2.5 bg-dark-card border border-dark-border rounded-xl text-white text-sm focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">Categoria *</label>
+                        <select id="form-category" required class="w-full px-3.5 py-2.5 bg-dark-card border border-dark-border rounded-xl text-white text-sm focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600">
+                            <option value="Sviluppo Web">Sviluppo Web</option>
+                            <option value="UI/UX Design">UI/UX Design</option>
+                            <option value="Mobile App">Mobile App</option>
+                            <option value="Grafica & Branding">Grafica & Branding</option>
+                            <option value="Consulenza">Consulenza</option>
+                            <option value="Altro">Altro</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">Stato *</label>
+                        <select id="form-status" required class="w-full px-3.5 py-2.5 bg-dark-card border border-dark-border rounded-xl text-white text-sm focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600">
+                            <option value="planned">Pianificato</option>
+                            <option value="in-progress">In Corso</option>
+                            <option value="completed">Completato</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">Data di Scadenza</label>
+                        <input type="date" id="form-date" class="w-full px-3.5 py-2.5 bg-dark-card border border-dark-border rounded-xl text-white text-sm focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">Link Esterno / Progetto</label>
+                        <input type="url" id="form-link" placeholder="https://..." class="w-full px-3.5 py-2.5 bg-dark-card border border-dark-border rounded-xl text-white text-sm focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">Tag (separati da virgola)</label>
+                    <input type="text" id="form-tags" placeholder="Es. Tailwind, React, Python, Figma" class="w-full px-3.5 py-2.5 bg-dark-card border border-dark-border rounded-xl text-white text-sm focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-zinc-300 uppercase tracking-wider mb-1.5">Descrizione</label>
+                    <textarea id="form-description" rows="3" placeholder="Dettagli ed obiettivi del lavoro..." class="w-full px-3.5 py-2.5 bg-dark-card border border-dark-border rounded-xl text-white text-sm focus:outline-none focus:border-brand-600 focus:ring-1 focus:ring-brand-600 resize-none"></textarea>
+                </div>
+
+                <div class="pt-3 border-t border-dark-border flex justify-end space-x-3">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2.5 rounded-xl border border-dark-border text-zinc-300 text-xs hover:bg-dark-border transition-colors">Annulla</button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-brand-700 hover:bg-brand-600 text-white font-medium text-xs transition-all shadow-md shadow-brand-950/50">Salva Lavoro</button>
+                </div>
+            </form>
+        </div>
     </div>
-</main>
 
-<div class="marquee">
-    <div>
-        ★ CIAO SONO MARCO ★ LIVELLO LEGGENDARIO ★
-        ZERO BUG SOLO FEATURE ★ CIAO SONO MARCO ★
-        LIVELLO LEGGENDARIO ★ ZERO BUG SOLO FEATURE ★
+    <!-- Modale Dettagli Lavoro -->
+    <div id="details-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+        <div onclick="closeDetailsModal()" class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
+        <div class="relative w-full max-w-lg bg-dark-surface border border-dark-border rounded-2xl shadow-2xl p-6 space-y-4">
+            <div class="flex justify-between items-start border-b border-dark-border pb-3">
+                <div>
+                    <span id="detail-category" class="text-[10px] font-bold text-brand-500 uppercase tracking-wider"></span>
+                    <h2 id="detail-title" class="text-lg font-bold text-white mt-0.5"></h2>
+                </div>
+                <button onclick="closeDetailsModal()" class="text-zinc-400 hover:text-white p-1 rounded-lg hover:bg-dark-border">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            
+            <div class="space-y-4 text-xs">
+                <div>
+                    <span class="uppercase text-[10px] text-zinc-500 font-semibold block mb-1">Descrizione</span>
+                    <p id="detail-description" class="text-zinc-300 leading-relaxed"></p>
+                </div>
+
+                <div class="flex items-center gap-6 pt-1">
+                    <div>
+                        <span class="uppercase text-[10px] text-zinc-500 font-semibold block">Stato</span>
+                        <span id="detail-status" class="font-medium mt-0.5 inline-block"></span>
+                    </div>
+                    <div>
+                        <span class="uppercase text-[10px] text-zinc-500 font-semibold block">Scadenza</span>
+                        <span id="detail-date" class="text-zinc-300 mt-0.5 inline-block"></span>
+                    </div>
+                </div>
+
+                <div>
+                    <span class="uppercase text-[10px] text-zinc-500 font-semibold block mb-1.5">Tag Associati</span>
+                    <div id="detail-tags" class="flex flex-wrap gap-1.5"></div>
+                </div>
+
+                <div id="detail-link-container" class="pt-2 hidden">
+                    <a id="detail-link" href="#" target="_blank" class="inline-flex items-center space-x-2 text-brand-400 hover:text-brand-300 font-medium">
+                        <i data-lucide="external-link" class="w-4 h-4"></i>
+                        <span>Apri Collegamento Esterno</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="pt-3 border-t border-dark-border flex justify-end">
+                <button onclick="closeDetailsModal()" class="px-4 py-2 bg-dark-card border border-dark-border rounded-xl text-zinc-300 text-xs font-medium hover:bg-dark-border transition-colors">Chiudi</button>
+            </div>
+        </div>
     </div>
-</div>
 
-<section id="about" style="
-    text-align:center;
-    padding:100px 20px;
-">
-    <div style="font-size:5rem;">🧠💥🕶️</div>
-    <h2 style="
-        font-family:'Rubik Mono One',sans-serif;
-        color:#eaff00;
-        font-size:clamp(2rem,6vw,5rem);
-        margin:30px 0;
-        text-shadow:5px 5px #ff00c8;
-    ">
-        404 NORMALITÀ<br>NOT FOUND
-    </h2>
-    <p style="color:#c9bedf;font-size:1.2rem;">
-        Troppo iconico per essere spiegato.
-    </p>
-</section>
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 flex items-center space-x-3 bg-dark-card border border-brand-600/50 text-zinc-100 px-4 py-3 rounded-xl shadow-2xl transition-all duration-300 transform translate-y-10 opacity-0 pointer-events-none">
+        <i data-lucide="check-circle-2" class="w-5 h-5 text-brand-500"></i>
+        <span id="toast-message" class="text-xs font-medium">Operazione completata!</span>
+    </div>
 
-<footer>
-    FATTO CON TROPPA ENERGIA ⚡ © MARCO 2026
-</footer>
+    <!-- Footer -->
+    <footer class="border-t border-dark-border py-8 mt-16 bg-dark-base text-center text-xs text-zinc-500">
+        <p><strong>Ciao Marco</strong> &mdash; Dashboard Personale Gestione Lavori</p>
+    </footer>
 
-<div id="chaos"></div>
-
-<script>
-function explode() {
-    document.body.classList.add('party');
-
-    const emojis = [
-        '🚀', '💥', '🔥', '👽', '🤑',
-        '💎', '⚡', '🍕', '🦄', '😎',
-        '🌈', '💀', '🛸', '👑'
-    ];
-
-    for (let i = 0; i < 100; i++) {
-        const p = document.createElement('div');
-
-        p.className = 'particle';
-        p.textContent = emojis[
-            Math.floor(Math.random() * emojis.length)
+    <!-- Logic Script -->
+    <script>
+        // Sample default data
+        const initialProjects = [
+            {
+                id: '1',
+                title: 'Restyling Brand & Identità Visiva',
+                category: 'Grafica & Branding',
+                status: 'completed',
+                date: '2026-03-20',
+                tags: ['Branding', 'Logo', 'Design'],
+                description: 'Creazione del nuovo manuale di brand, tavolozza colori e risorse grafiche vettoriali.',
+                link: ''
+            },
+            {
+                id: '2',
+                title: 'Sviluppo Piattaforma Web Marco',
+                category: 'Sviluppo Web',
+                status: 'in-progress',
+                date: '2026-11-15',
+                tags: ['Tailwind', 'JavaScript', 'HTML5'],
+                description: 'Implementazione dell’interfaccia utente interattiva in modalità Dark con accenti di colore rosso.',
+                link: 'https://github.com'
+            },
+            {
+                id: '3',
+                title: 'Pianificazione Mobile App Dashboard',
+                category: 'Mobile App',
+                status: 'planned',
+                date: '2026-12-10',
+                tags: ['UI/UX', 'Figma', 'Wireframe'],
+                description: 'Studio dei flussi utente e progettazione prototipo per il sistema di gestione mobile.',
+                link: ''
+            }
         ];
 
-        p.style.left = Math.random() * 100 + 'vw';
-        p.style.top = Math.random() * 100 + 'vh';
+        let projects = JSON.parse(localStorage.getItem('ciao_marco_projects')) || initialProjects;
+        let activeStatusFilter = 'all';
 
-        p.style.setProperty('--x',
-            (Math.random() - 0.5) * 700 + 'px');
+        // Init App
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProjects();
+            lucide.createIcons();
+        });
 
-        p.style.setProperty('--y',
-            (Math.random() - 0.5) * 700 + 'px');
+        // Save data to localStorage
+        function saveProjects() {
+            localStorage.setItem('ciao_marco_projects', JSON.stringify(projects));
+            renderProjects();
+        }
 
-        p.style.animationDelay = Math.random() * .5 + 's';
+        // Render projects grid
+        function renderProjects() {
+            const grid = document.getElementById('projects-grid');
+            const emptyState = document.getElementById('empty-state');
+            const searchQuery = document.getElementById('search-input').value.toLowerCase().trim();
+            const clearBtn = document.getElementById('clear-search');
 
-        document.body.appendChild(p);
+            clearBtn.classList.toggle('hidden', searchQuery === '');
 
-        setTimeout(() => p.remove(), 2200);
-    }
+            // Filter projects based on search query and status filter
+            const filteredProjects = projects.filter(p => {
+                const matchesSearch = p.title.toLowerCase().includes(searchQuery) ||
+                                      p.description.toLowerCase().includes(searchQuery) ||
+                                      p.category.toLowerCase().includes(searchQuery) ||
+                                      p.tags.some(tag => tag.toLowerCase().includes(searchQuery));
+                
+                const matchesStatus = activeStatusFilter === 'all' || p.status === activeStatusFilter;
 
-    setTimeout(() => {
-        document.body.classList.remove('party');
-    }, 1500);
-}
+                return matchesSearch && matchesStatus;
+            });
 
-// Effetto emoji quando clicchi sullo sfondo
-document.addEventListener('click', (e) => {
-    if (e.target.tagName === 'BUTTON') return;
+            updateStats();
+            grid.innerHTML = '';
 
-    const star = document.createElement('div');
-    star.className = 'particle';
-    star.textContent = '✨';
-    star.style.left = e.clientX + 'px';
-    star.style.top = e.clientY + 'px';
-    star.style.setProperty('--x', (Math.random()-0.5)*150+'px');
-    star.style.setProperty('--y', '-100px');
+            if (filteredProjects.length === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+                
+                filteredProjects.forEach(project => {
+                    let statusBadgeClass = 'bg-blue-500/10 text-blue-400 border-blue-500/20';
+                    let statusText = 'Pianificato';
 
-    document.body.appendChild(star);
-    setTimeout(() => star.remove(), 1500);
-});
-</script>
+                    if (project.status === 'in-progress') {
+                        statusBadgeClass = 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+                        statusText = 'In Corso';
+                    } else if (project.status === 'completed') {
+                        statusBadgeClass = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20';
+                        statusText = 'Completato';
+                    }
 
+                    const card = document.createElement('div');
+                    card.className = 'bg-dark-card border border-dark-border card-glow rounded-2xl p-5 flex flex-col justify-between transition-all duration-200 group';
+                    
+                    card.innerHTML = `
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-[10px] uppercase font-bold tracking-wider text-brand-500">${escapeHtml(project.category)}</span>
+                                <span class="px-2.5 py-0.5 text-[10px] font-semibold rounded-full border ${statusBadgeClass}">
+                                    ${statusText}
+                                </span>
+                            </div>
+
+                            <h3 class="font-bold text-white text-base group-hover:text-brand-400 transition-colors line-clamp-1">${escapeHtml(project.title)}</h3>
+                            
+                            <p class="text-zinc-400 text-xs leading-relaxed line-clamp-3">${escapeHtml(project.description || 'Nessuna descrizione specificata.')}</p>
+                            
+                            <div class="flex flex-wrap gap-1.5 pt-2">
+                                ${project.tags.map(tag => `<span class="bg-dark-surface border border-dark-border text-zinc-400 text-[10px] px-2 py-0.5 rounded-md">${escapeHtml(tag.trim())}</span>`).join('')}
+                            </div>
+                        </div>
+
+                        <div class="pt-4 mt-5 border-t border-dark-border/80 flex items-center justify-between text-xs text-zinc-500">
+                            <div class="flex items-center space-x-1.5">
+                                <i data-lucide="calendar" class="w-3.5 h-3.5 text-zinc-500"></i>
+                                <span class="text-[11px]">${project.date ? formatDate(project.date) : 'Senza data'}</span>
+                            </div>
+
+                            <div class="flex items-center space-x-1">
+                                <button onclick="openDetailsModal('${project.id}')" title="Dettagli" class="p-1.5 text-zinc-400 hover:text-white rounded-lg hover:bg-dark-surface transition-colors">
+                                    <i data-lucide="eye" class="w-4 h-4"></i>
+                                </button>
+                                <button onclick="editProject('${project.id}')" title="Modifica" class="p-1.5 text-zinc-400 hover:text-brand-400 rounded-lg hover:bg-dark-surface transition-colors">
+                                    <i data-lucide="pencil" class="w-4 h-4"></i>
+                                </button>
+                                <button onclick="deleteProject('${project.id}')" title="Elimina" class="p-1.5 text-zinc-400 hover:text-red-400 rounded-lg hover:bg-dark-surface transition-colors">
+                                    <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+
+            lucide.createIcons();
+        }
+
+        // Update statistics summary
+        function updateStats() {
+            document.getElementById('stat-total').textContent = projects.length;
+            document.getElementById('stat-planned').textContent = projects.filter(p => p.status === 'planned').length;
+            document.getElementById('stat-progress').textContent = projects.filter(p => p.status === 'in-progress').length;
+            document.getElementById('stat-completed').textContent = projects.filter(p => p.status === 'completed').length;
+        }
+
+        // Filter button click logic
+        function setFilterStatus(status) {
+            activeStatusFilter = status;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.className = 'filter-btn px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap border bg-dark-surface text-zinc-400 border-dark-border hover:border-zinc-700 transition-all';
+            });
+
+            const activeBtn = document.getElementById(`filter-${status}`);
+            if(activeBtn) {
+                activeBtn.className = 'filter-btn px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap border bg-brand-900/40 text-brand-300 border-brand-600/60 transition-all';
+            }
+
+            renderProjects();
+        }
+
+        // Clear search input
+        function clearSearch() {
+            document.getElementById('search-input').value = '';
+            renderProjects();
+        }
+
+        // Modal Controls
+        function openModal(isEdit = false) {
+            const modal = document.getElementById('modal');
+            const container = document.getElementById('modal-container');
+            
+            if(!isEdit) {
+                document.getElementById('project-form').reset();
+                document.getElementById('project-id').value = '';
+                document.getElementById('modal-title').textContent = 'Nuovo Lavoro';
+            }
+
+            modal.classList.remove('pointer-events-none', 'opacity-0');
+            modal.classList.add('opacity-100');
+            container.classList.remove('scale-95');
+            container.classList.add('scale-100');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            const container = document.getElementById('modal-container');
+            
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.classList.remove('opacity-100');
+            container.classList.remove('scale-100');
+            container.classList.add('scale-95');
+        }
+
+        // Form Submission
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const id = document.getElementById('project-id').value || Date.now().toString();
+            const title = document.getElementById('form-title').value.trim();
+            const category = document.getElementById('form-category').value;
+            const status = document.getElementById('form-status').value;
+            const date = document.getElementById('form-date').value;
+            const link = document.getElementById('form-link').value.trim();
+            const rawTags = document.getElementById('form-tags').value;
+            const description = document.getElementById('form-description').value.trim();
+
+            const tags = rawTags ? rawTags.split(',').map(t => t.trim()).filter(t => t !== '') : [];
+            const existingIndex = projects.findIndex(p => p.id === id);
+            const projectData = { id, title, category, status, date, link, tags, description };
+
+            if (existingIndex > -1) {
+                projects[existingIndex] = projectData;
+                showToast('Lavoro aggiornato con successo!');
+            } else {
+                projects.unshift(projectData);
+                showToast('Nuovo lavoro creato con successo!');
+            }
+
+            saveProjects();
+            closeModal();
+        }
+
+        // Edit Project
+        function editProject(id) {
+            const project = projects.find(p => p.id === id);
+            if (!project) return;
+
+            document.getElementById('project-id').value = project.id;
+            document.getElementById('form-title').value = project.title;
+            document.getElementById('form-category').value = project.category;
+            document.getElementById('form-status').value = project.status;
+            document.getElementById('form-date').value = project.date || '';
+            document.getElementById('form-link').value = project.link || '';
+            document.getElementById('form-tags').value = project.tags.join(', ');
+            document.getElementById('form-description').value = project.description || '';
+
+            document.getElementById('modal-title').textContent = 'Modifica Lavoro';
+            openModal(true);
+        }
+
+        // Delete Project
+        function deleteProject(id) {
+            const project = projects.find(p => p.id === id);
+            if (!project) return;
+
+            if (confirm(`Sei sicuro di voler eliminare il lavoro "${project.title}"?`)) {
+                projects = projects.filter(p => p.id !== id);
+                saveProjects();
+                showToast('Lavoro eliminato!');
+            }
+        }
+
+        // Details Modal View
+        function openDetailsModal(id) {
+            const project = projects.find(p => p.id === id);
+            if (!project) return;
+
+            document.getElementById('detail-category').textContent = project.category;
+            document.getElementById('detail-title').textContent = project.title;
+            document.getElementById('detail-description').textContent = project.description || 'Nessuna descrizione fornita.';
+            
+            const statusElem = document.getElementById('detail-status');
+            if (project.status === 'completed') {
+                statusElem.textContent = 'Completato';
+                statusElem.className = 'text-emerald-400 font-semibold';
+            } else if (project.status === 'in-progress') {
+                statusElem.textContent = 'In Corso';
+                statusElem.className = 'text-amber-400 font-semibold';
+            } else {
+                statusElem.textContent = 'Pianificato';
+                statusElem.className = 'text-blue-400 font-semibold';
+            }
+
+            document.getElementById('detail-date').textContent = project.date ? formatDate(project.date) : 'Non specificata';
+
+            const tagsContainer = document.getElementById('detail-tags');
+            tagsContainer.innerHTML = project.tags.length > 0 
+                ? project.tags.map(t => `<span class="bg-dark-card border border-dark-border text-zinc-300 text-[10px] px-2 py-0.5 rounded-md">${escapeHtml(t)}</span>`).join('')
+                : '<span class="text-zinc-500 text-xs">Nessun tag</span>';
+
+            const linkContainer = document.getElementById('detail-link-container');
+            const linkElem = document.getElementById('detail-link');
+            if(project.link) {
+                linkElem.href = project.link;
+                linkContainer.classList.remove('hidden');
+            } else {
+                linkContainer.classList.add('hidden');
+            }
+
+            const detailsModal = document.getElementById('details-modal');
+            detailsModal.classList.remove('pointer-events-none', 'opacity-0');
+            detailsModal.classList.add('opacity-100');
+        }
+
+        function closeDetailsModal() {
+            const detailsModal = document.getElementById('details-modal');
+            detailsModal.classList.add('opacity-0', 'pointer-events-none');
+            detailsModal.classList.remove('opacity-100');
+        }
+
+        // Toast Notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').textContent = message;
+            
+            toast.classList.remove('translate-y-10', 'opacity-0', 'pointer-events-none');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-10', 'opacity-0', 'pointer-events-none');
+            }, 2500);
+        }
+
+        // Utilities
+        function formatDate(dateString) {
+            if (!dateString) return '';
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('it-IT', options);
+        }
+
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str.replace(/[&<>"']/g, function(m) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                }[m];
+            });
+        }
+    </script>
 </body>
 </html>
-
-
-
 
