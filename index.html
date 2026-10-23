@@ -4,295 +4,279 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CIAO SONO MARCO</title>
+<title>Ciao sono Marco 🚀</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Montserrat:wght@300;500;700&display=swap');
-
-:root {
-  --green: #39ff14;
-  --dark: #050706;
-  --glass: rgba(255,255,255,.055);
-}
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Space+Grotesk:wght@400;700&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: crosshair;
 }
 
-html { scroll-behavior: smooth; }
+:root {
+    --pink: #ff00c8;
+    --blue: #00f7ff;
+    --yellow: #eaff00;
+}
 
 body {
-  background: var(--dark);
-  color: white;
-  font-family: 'Montserrat', sans-serif;
-  overflow-x: hidden;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    background: #080014;
+    animation: bg 12s infinite alternate;
+}
+
+@keyframes bg {
+    0% { background-color: #080014; }
+    33% { background-color: #20002c; }
+    66% { background-color: #001d35; }
+    100% { background-color: #280013; }
 }
 
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  background:
-    radial-gradient(ellipse at 75% 20%, #12391b66, transparent 45%),
-    linear-gradient(120deg, #030504, #101612, #020302);
+    content: "";
+    position: fixed;
+    inset: -50%;
+    pointer-events: none;
+    z-index: -1;
+    background: repeating-conic-gradient(
+        from 0deg,
+        #ff00c8 0deg 5deg,
+        transparent 5deg 15deg,
+        #00f7ff 15deg 20deg,
+        transparent 20deg 30deg
+    );
+    opacity: .12;
+    animation: spin 80s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
 nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 10;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 8%;
-  background: #030504b8;
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid #39ff1433;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 7%;
+    font-weight: bold;
+    letter-spacing: 3px;
 }
 
 .logo {
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
-  letter-spacing: 3px;
-}
-
-.logo span { color: var(--green); }
-
-nav a {
-  color: #ccc;
-  text-decoration: none;
-  margin-left: 25px;
-  font-size: 11px;
-  letter-spacing: 2px;
-  transition: .3s;
-}
-
-nav a:hover { color: var(--green); }
-
-.hero {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 130px 20px 70px;
-  position: relative;
+    color: var(--yellow);
+    text-shadow: 0 0 20px var(--yellow);
+    font-size: 1.4rem;
 }
 
 .tag {
-  color: var(--green);
-  letter-spacing: 7px;
-  font-size: 11px;
-  margin-bottom: 25px;
+    border: 1px solid var(--blue);
+    padding: 10px 16px;
+    border-radius: 50px;
+    color: var(--blue);
+    box-shadow: 0 0 20px #00f7ff33;
+}
+
+main {
+    min-height: 78vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+    position: relative;
+}
+
+.eyebrow {
+    color: var(--yellow);
+    font-size: 14px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+    to { opacity: .3; }
 }
 
 h1 {
-  font-family: 'Orbitron', sans-serif;
-  font-size: clamp(45px, 10vw, 115px);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: -4px;
-}
-
-h1 span {
-  display: block;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--green);
-  text-shadow: 0 0 35px #39ff1420;
-}
-
-.subtitle {
-  color: #aaa;
-  margin-top: 25px;
-  font-size: 13px;
-  letter-spacing: 4px;
-}
-
-.car {
-  margin: 45px 0 25px;
-  width: min(850px, 95%);
-  min-height: 220px;
-  display: grid;
-  place-items: center;
-  position: relative;
-}
-
-.car img {
-  width: 100%;
-  max-height: 390px;
-  object-fit: contain;
-  filter: drop-shadow(0 25px 35px #39ff1440);
-  animation: float 4s ease-in-out infinite;
-}
-
-.car-placeholder {
-  width: 100%;
-  min-height: 210px;
-  display: grid;
-  place-items: center;
-  font-family: 'Orbitron', sans-serif;
-  font-size: clamp(25px, 5vw, 55px);
-  color: #39ff1477;
-  border: 1px solid #39ff1422;
-  background: linear-gradient(135deg, #39ff1408, #ffffff03);
-  clip-path: polygon(8% 0, 92% 0, 100% 50%, 92% 100%, 8% 100%, 0 50%);
+    font-family: 'Rubik Mono One', sans-serif;
+    font-size: clamp(3rem, 11vw, 9rem);
+    line-height: .98;
+    letter-spacing: -5px;
+    text-transform: uppercase;
+    transform: rotate(-3deg);
+    animation: float 4s ease-in-out infinite;
+    filter: drop-shadow(0 0 15px #ff00c866);
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+    0%, 100% { transform: rotate(-3deg) translateY(0); }
+    50% { transform: rotate(2deg) translateY(-18px); }
 }
 
-.button {
-  display: inline-block;
-  padding: 15px 28px;
-  border: 1px solid var(--green);
-  color: var(--green);
-  text-decoration: none;
-  font-size: 11px;
-  letter-spacing: 3px;
-  transition: .3s;
+h1 span {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--blue);
+    text-shadow: 0 0 30px #00f7ff66;
 }
 
-.button:hover {
-  background: var(--green);
-  color: black;
-  box-shadow: 0 0 35px #39ff1466;
+h1 .marco {
+    color: var(--pink);
+    -webkit-text-stroke: 0;
+    text-shadow:
+        5px 5px 0 var(--blue),
+        10px 10px 0 #ffea00,
+        0 0 60px var(--pink);
 }
 
-section {
-  padding: 100px 8%;
+.subtitle {
+    margin-top: 40px;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    max-width: 600px;
+    line-height: 1.7;
+    color: #d9d1ec;
 }
 
-.section-label {
-  color: var(--green);
-  font-size: 11px;
-  letter-spacing: 5px;
-  margin-bottom: 18px;
+.subtitle b {
+    color: var(--yellow);
 }
 
-.section-title {
-  font-family: 'Orbitron', sans-serif;
-  font-size: clamp(28px, 5vw, 52px);
-  margin-bottom: 45px;
+.buttons {
+    margin-top: 35px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
+button {
+    padding: 17px 26px;
+    border: none;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: .25s;
+    cursor: pointer;
 }
 
-.stat {
-  padding: 32px 22px;
-  background: var(--glass);
-  border: 1px solid #ffffff13;
-  transition: .3s;
+.primary {
+    background: var(--pink);
+    color: white;
+    box-shadow: 0 0 25px #ff00c877;
+    transform: skew(-5deg);
 }
 
-.stat:hover {
-  border-color: var(--green);
-  transform: translateY(-5px);
+.secondary {
+    background: transparent;
+    border: 2px solid var(--blue);
+    color: var(--blue);
 }
 
-.stat strong {
-  display: block;
-  color: var(--green);
-  font-family: 'Orbitron', sans-serif;
-  font-size: clamp(25px, 4vw, 42px);
-  margin-bottom: 12px;
+button:hover {
+    transform: scale(1.12) rotate(-2deg);
+    box-shadow: 0 0 35px var(--blue);
 }
 
-.stat p {
-  color: #999;
-  font-size: 10px;
-  letter-spacing: 2px;
+.sticker {
+    position: absolute;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    filter: drop-shadow(0 0 15px #ffffff55);
+    animation: wiggle 3s infinite ease-in-out;
+    user-select: none;
 }
 
-.profile {
-  background: linear-gradient(90deg, #0b100c, #070907);
-  border-top: 1px solid #39ff1422;
-  border-bottom: 1px solid #39ff1422;
+.s1 { top: 16%; left: 10%; }
+.s2 { top: 20%; right: 12%; animation-delay: -1s; }
+.s3 { bottom: 12%; left: 14%; animation-delay: -2s; }
+.s4 { bottom: 10%; right: 14%; animation-delay: -.5s; }
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(-15deg) translateY(0); }
+    50% { transform: rotate(15deg) translateY(-25px); }
 }
 
-.profile-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 50px;
-  align-items: center;
+.marquee {
+    overflow: hidden;
+    white-space: nowrap;
+    background: var(--yellow);
+    color: #10001b;
+    padding: 17px 0;
+    font-family: 'Rubik Mono One', sans-serif;
+    font-size: 1.1rem;
+    transform: rotate(-2deg) scale(1.05);
+    margin: 25px 0;
 }
 
-.profile p {
-  color: #aaa;
-  line-height: 2;
-  font-size: 14px;
+.marquee div {
+    display: inline-block;
+    animation: scroll 18s linear infinite;
 }
 
-.signature {
-  font-family: 'Orbitron', sans-serif;
-  color: var(--green);
-  font-size: clamp(30px, 5vw, 60px);
-  font-weight: 900;
-  text-shadow: 0 0 30px #39ff1433;
+@keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
 }
-
-.specs {
-  list-style: none;
-}
-
-.specs li {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  padding: 17px 0;
-  border-bottom: 1px solid #ffffff17;
-  font-size: 12px;
-}
-
-.specs li span:last-child { color: var(--green); }
 
 footer {
-  text-align: center;
-  padding: 45px 20px;
-  color: #777;
-  font-size: 10px;
-  letter-spacing: 3px;
+    padding: 35px;
+    text-align: center;
+    font-size: .8rem;
+    letter-spacing: 4px;
+    color: #8e83a9;
 }
 
-footer strong { color: var(--green); }
-
-.reveal {
-  opacity: 0;
-  transform: translateY(25px);
-  transition: opacity .8s, transform .8s;
+#chaos {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
 }
 
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+.particle {
+    position: fixed;
+    pointer-events: none;
+    font-size: 28px;
+    animation: explode 1.5s ease-out forwards;
 }
 
-#clock {
-  color: var(--green);
-  font-family: 'Orbitron', sans-serif;
-  font-size: 11px;
-  margin-top: 25px;
-  letter-spacing: 3px;
+@keyframes explode {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(.3) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--x), var(--y))
+                   scale(2) rotate(720deg);
+    }
 }
 
-@media(max-width:700px) {
-  nav { padding: 20px 5%; }
-  nav a { margin-left: 10px; font-size: 9px; }
-  .stats { grid-template-columns: 1fr; }
-  .profile-grid { grid-template-columns: 1fr; }
-  section { padding: 75px 6%; }
-  h1 { letter-spacing: -2px; }
+body.party {
+    animation: party .25s infinite alternate;
+}
+
+@keyframes party {
+    from { filter: hue-rotate(0deg); }
+    to { filter: hue-rotate(180deg); }
+}
+
+@media (max-width: 600px) {
+    nav { padding: 22px 5%; }
+    .tag { font-size: 10px; letter-spacing: 1px; }
+    h1 { letter-spacing: -2px; }
+    .s1 { left: 3%; }
+    .s2 { right: 3%; }
+    .s3 { left: 4%; }
+    .s4 { right: 4%; }
 }
 </style>
 </head>
@@ -300,111 +284,133 @@ footer strong { color: var(--green); }
 <body>
 
 <nav>
-  <div class="logo">ML<span>.</span> LUXORY</div>
-  <div>
-    <a href="#home">HOME</a>
-    <a href="#specs">SPECIFICHE</a>
-    <a href="#about">OWNER</a>
-  </div>
+    <div class="logo">★ MARCO.EXE</div>
+    <div class="tag">ONLINE ● 100%</div>
 </nav>
 
-<header class="hero" id="home">
-  <div class="tag">EXCLUSIVE AUTOMOTIVE EXPERIENCE</div>
+<main>
+    <div class="sticker s1">👽</div>
+    <div class="sticker s2">💿</div>
+    <div class="sticker s3">🛸</div>
+    <div class="sticker s4">🔥</div>
 
-  <h1>MARCO <span>LUXORY</span></h1>
+    <div class="eyebrow">⚡ ATTENZIONE: PERSONALITÀ INSTABILE ⚡</div>
 
-  <p class="subtitle">BMW M4 COMPETITION · GREEN EDITION</p>
+    <h1>
+        CIAO SONO
+        <span class="marco">MARCO</span>
+        <span>🚀</span>
+    </h1>
 
-  <div class="car">
-    <!-- Inserisci qui una foto della tua BMW -->
-    <div class="car-placeholder">M4 COMPETITION</div>
-  </div>
+    <p class="subtitle">
+        Non sono un bug.<br>
+        Sono una <b>FEATURE NON RICHIESTA.</b><br>
+        Benvenuti nel mio universo. 🌌
+    </p>
 
-  <a href="#specs" class="button">SCOPRI LA POTENZA ↘</a>
-  <div id="clock">SYSTEM ONLINE</div>
-</header>
+    <div class="buttons">
+        <button class="primary" onclick="explode()">
+            NON CLICCARE 💥
+        </button>
 
-<section id="specs" class="reveal">
-  <div class="section-label">01 / PERFORMANCE</div>
-  <h2 class="section-title">NATA PER DOMINARE.</h2>
-
-  <div class="stats">
-    <div class="stat">
-      <strong>510 CV</strong>
-      <p>POTENZA MASSIMA*</p>
+        <button class="secondary" onclick="location.href='#about'">
+            SCOPRI IL MITO ↓
+        </button>
     </div>
-    <div class="stat">
-      <strong>3.9 s</strong>
-      <p>0–100 KM/H*</p>
-    </div>
-    <div class="stat">
-      <strong>M xDrive</strong>
-      <p>TRAZIONE INTEGRALE*</p>
-    </div>
-  </div>
-  <p style="color:#777;font-size:10px;margin-top:20px">
-    *Valori indicativi per alcune versioni M4 Competition xDrive.
-    Specifiche variabili in base ad anno e versione.
-  </p>
-</section>
+</main>
 
-<section class="profile" id="about">
-  <div class="profile-grid reveal">
+<div class="marquee">
     <div>
-      <div class="section-label">02 / THE OWNER</div>
-      <div class="signature">MARCO<br>LUXORY.</div>
-      <p style="margin-top:25px">
-        Design aggressivo. Anima sportiva. Eleganza senza compromessi.
-        Il verde incontra la potenza M in un universo dove ogni dettaglio
-        racconta una passione per le auto.
-      </p>
+        ★ CIAO SONO MARCO ★ LIVELLO LEGGENDARIO ★
+        ZERO BUG SOLO FEATURE ★ CIAO SONO MARCO ★
+        LIVELLO LEGGENDARIO ★ ZERO BUG SOLO FEATURE ★
     </div>
+</div>
 
-    <div>
-      <div class="section-label">VEHICLE PROFILE</div>
-      <ul class="specs">
-        <li><span>MODELLO</span><span>BMW M4 COMPETITION</span></li>
-        <li><span>COLORE</span><span>VERDE</span></li>
-        <li><span>STILE</span><span>FULL BLACK / NEON GREEN</span></li>
-        <li><span>OWNER</span><span>MARCO LUXORY</span></li>
-        <li><span>STATUS</span><span>UNIQUE ENERGY</span></li>
-      </ul>
-    </div>
-  </div>
+<section id="about" style="
+    text-align:center;
+    padding:100px 20px;
+">
+    <div style="font-size:5rem;">🧠💥🕶️</div>
+    <h2 style="
+        font-family:'Rubik Mono One',sans-serif;
+        color:#eaff00;
+        font-size:clamp(2rem,6vw,5rem);
+        margin:30px 0;
+        text-shadow:5px 5px #ff00c8;
+    ">
+        404 NORMALITÀ<br>NOT FOUND
+    </h2>
+    <p style="color:#c9bedf;font-size:1.2rem;">
+        Troppo iconico per essere spiegato.
+    </p>
 </section>
 
 <footer>
-  <p>DESIGNED FOR <strong>MARCO LUXORY</strong></p>
-  <p style="margin-top:12px">UNOFFICIAL FAN DESIGN · NOT AFFILIATED WITH BMW</p>
+    FATTO CON TROPPA ENERGIA ⚡ © MARCO 2026
 </footer>
 
-<script>
-const clock = document.getElementById("clock");
+<div id="chaos"></div>
 
-function updateClock() {
-  const now = new Date();
-  clock.textContent = "SYSTEM ONLINE // " +
-    now.toLocaleTimeString("it-IT");
+<script>
+function explode() {
+    document.body.classList.add('party');
+
+    const emojis = [
+        '🚀', '💥', '🔥', '👽', '🤑',
+        '💎', '⚡', '🍕', '🦄', '😎',
+        '🌈', '💀', '🛸', '👑'
+    ];
+
+    for (let i = 0; i < 100; i++) {
+        const p = document.createElement('div');
+
+        p.className = 'particle';
+        p.textContent = emojis[
+            Math.floor(Math.random() * emojis.length)
+        ];
+
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.top = Math.random() * 100 + 'vh';
+
+        p.style.setProperty('--x',
+            (Math.random() - 0.5) * 700 + 'px');
+
+        p.style.setProperty('--y',
+            (Math.random() - 0.5) * 700 + 'px');
+
+        p.style.animationDelay = Math.random() * .5 + 's';
+
+        document.body.appendChild(p);
+
+        setTimeout(() => p.remove(), 2200);
+    }
+
+    setTimeout(() => {
+        document.body.classList.remove('party');
+    }, 1500);
 }
 
-updateClock();
-setInterval(updateClock, 1000);
+// Effetto emoji quando clicchi sullo sfondo
+document.addEventListener('click', (e) => {
+    if (e.target.tagName === 'BUTTON') return;
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-    }
-  });
-}, { threshold: 0.15 });
+    const star = document.createElement('div');
+    star.className = 'particle';
+    star.textContent = '✨';
+    star.style.left = e.clientX + 'px';
+    star.style.top = e.clientY + 'px';
+    star.style.setProperty('--x', (Math.random()-0.5)*150+'px');
+    star.style.setProperty('--y', '-100px');
 
-document.querySelectorAll(".reveal").forEach(el => {
-  observer.observe(el);
+    document.body.appendChild(star);
+    setTimeout(() => star.remove(), 1500);
 });
 </script>
 
 </body>
 </html>
+
 
 
 
