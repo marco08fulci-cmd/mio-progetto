@@ -1,1 +1,76 @@
-<h1>Ciao sono Marco</h1>
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciao sono Marco</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #eaffea, #c8ffd0);
+        }
+
+        .contenitore {
+            text-align: center;
+            background: white;
+            padding: 60px 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px #00000020;
+        }
+
+        h1 {
+            color: #00a83b;
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        p {
+            color: #444;
+            font-size: 22px;
+        }
+
+        .pulsante {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: #00a83b;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        .pulsante:hover {
+            background: #007c2b;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenitore">
+        <h1>Ciao sono Marco!</h1>
+        <p>Benvenuto nella mia pagina personale 🌿</p>
+        <a class="pulsante" href="#ciao"
+           onclick="alert('Ciao! Piacere di conoscerti!')">
+            Clicca qui
+        </a>
+    </div>
+</body>
+</html>
+
