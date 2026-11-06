@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it">
+<body>
+
+  <!-- 2 Input -->
+  <input type="text" id="n1" placeholder="Numero 1">
+  <input type="text" id="n2" placeholder="Numero 2"> <br><br>
+
+  <!-- 4 Tasti Operazioni -->
+  <button onclick="op = '+'">+</button>
+  <button onclick="op = '-'">-</button>
+  <button onclick="op = '*'">*</button>
+  <button onclick="op = '/'">/</button>
+
+  <!-- 5° Tasto Uguale -->
+  <button onclick="calcola()">=</button>
+
+  <!-- Risultato -->
+  <h2 id="out">0</h2>
+
+  <script>
+    let op = '+'; // Operazione predefinita
+
+    function calcola() {
+      let a = Number(document.getElementById('n1').value);
+      let b = Number(document.getElementById('n2').value);
+      
+      let ris = 0;
+      if (op === '+') ris = a + b;
+      if (op === '-') ris = a - b;
+      if (op === '*') ris = a * b;
+      if (op === '/') ris = a / b;
+
+      document.getElementById('out').innerText = ris;
+    }
+  </script>
+
+</body>
+</html>
