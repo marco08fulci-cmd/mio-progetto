@@ -1,19 +1,127 @@
 <!DOCTYPE html>
 <html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calcolatrice</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .calculator-card {
+      background-color: #1e1e1e;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 24px;
+      width: 100%;
+      max-width: 320px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      background-color: #2a2a2a;
+      border: 1px solid #3a3a3a;
+      border-radius: 6px;
+      color: #ffffff;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #e50914;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    button {
+      background-color: #2a2a2a;
+      color: #ffffff;
+      border: 1px solid #3a3a3a;
+      border-radius: 6px;
+      padding: 14px 0;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #e50914;
+      border-color: #e50914;
+    }
+
+    .result-box {
+      background-color: #121212;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      padding: 16px;
+      text-align: right;
+    }
+
+    .result-box span {
+      display: block;
+      font-size: 12px;
+      color: #888888;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    h2#out {
+      font-size: 24px;
+      font-weight: 600;
+      word-break: break-all;
+    }
+  </style>
+</head>
 <body>
 
-  <!-- 2 Input -->
-  <input type="text" id="n1" placeholder="Numero 1">
-  <input type="text" id="n2" placeholder="Numero 2"> <br><br>
+  <div class="calculator-card">
+    <div class="input-group">
+      <input type="text" id="n1" placeholder="Numero 1">
+      <input type="text" id="n2" placeholder="Numero 2">
+    </div>
 
-  <!-- 4 Tasti Operazioni (calcolano al click) -->
-  <button onclick="calcola('+')">+</button>
-  <button onclick="calcola('-')">-</button>
-  <button onclick="calcola('*')">*</button>
-  <button onclick="calcola('/')">/</button>
+    <div class="button-grid">
+      <button onclick="calcola('+')">+</button>
+      <button onclick="calcola('-')">-</button>
+      <button onclick="calcola('*')">×</button>
+      <button onclick="calcola('/')">÷</button>
+    </div>
 
-  <!-- Risultato -->
-  <h2 id="out">0</h2>
+    <div class="result-box">
+      <span>Risultato</span>
+      <h2 id="out">0</h2>
+    </div>
+  </div>
 
   <script>
     function calcola(op) {
