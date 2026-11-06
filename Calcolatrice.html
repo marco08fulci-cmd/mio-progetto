@@ -6,30 +6,31 @@
   <input type="text" id="n1" placeholder="Numero 1">
   <input type="text" id="n2" placeholder="Numero 2"> <br><br>
 
-  <!-- 4 Tasti Operazioni -->
-  <button onclick="op = '+'">+</button>
-  <button onclick="op = '-'">-</button>
-  <button onclick="op = '*'">*</button>
-  <button onclick="op = '/'">/</button>
-
-  <!-- 5° Tasto Uguale -->
-  <button onclick="calcola()">=</button>
+  <!-- 4 Tasti Operazioni (calcolano al click) -->
+  <button onclick="calcola('+')">+</button>
+  <button onclick="calcola('-')">-</button>
+  <button onclick="calcola('*')">*</button>
+  <button onclick="calcola('/')">/</button>
 
   <!-- Risultato -->
   <h2 id="out">0</h2>
 
   <script>
-    let op = '+'; // Operazione predefinita
-
-    function calcola() {
+    function calcola(op) {
       let a = Number(document.getElementById('n1').value);
       let b = Number(document.getElementById('n2').value);
-      
       let ris = 0;
+
       if (op == '+') ris = a + b;
       if (op == '-') ris = a - b;
       if (op == '*') ris = a * b;
-      if (op == '/') ris = a / b;
+      if (op == '/') {
+        if (b == 0) {
+          ris = "Impossibile";
+        } else {
+          ris = a / b;
+        }
+      }
 
       document.getElementById('out').innerText = ris;
     }
