@@ -365,41 +365,31 @@
 
     <!-- Logic Script -->
     <script>
-        // Sample default data
+        // I tuoi progetti di default
         const initialProjects = [
             {
                 id: '1',
-                title: 'Restyling Brand & Identità Visiva',
-                category: 'Grafica & Branding',
+                title: 'Calcolatrice Web',
+                category: 'Sviluppo Web',
                 status: 'completed',
-                date: '2026-03-20',
-                tags: ['Branding', 'Logo', 'Design'],
-                description: 'Creazione del nuovo manuale di brand, tavolozza colori e risorse grafiche vettoriali.',
-                link: ''
+                date: '2026-11-13',
+                tags: ['HTML', 'CSS', 'JavaScript'],
+                description: 'Applicazione web calcolatrice interattiva realizzata in HTML, CSS e JavaScript.',
+                link: 'https://marco08fulci-cmd.github.io/mio-progetto/Calcolatrice.html'
             },
             {
                 id: '2',
-                title: 'Sviluppo Piattaforma Web Marco',
+                title: 'Gestione Anagrafica',
                 category: 'Sviluppo Web',
-                status: 'in-progress',
-                date: '2026-11-15',
-                tags: ['Tailwind', 'JavaScript', 'HTML5'],
-                description: 'Implementazione dell’interfaccia utente interattiva in modalità Dark con accenti di colore rosso.',
-                link: 'https://github.com'
-            },
-            {
-                id: '3',
-                title: 'Pianificazione Mobile App Dashboard',
-                category: 'Mobile App',
-                status: 'planned',
-                date: '2026-12-10',
-                tags: ['UI/UX', 'Figma', 'Wireframe'],
-                description: 'Studio dei flussi utente e progettazione prototipo per il sistema di gestione mobile.',
-                link: ''
+                status: 'completed',
+                date: '2026-11-13',
+                tags: ['HTML', 'JavaScript', 'Form'],
+                description: 'Modulo web per la raccolta, gestione e visualizzazione dei dati anagrafici.',
+                link: 'https://marco08fulci-cmd.github.io/mio-progetto/Anagrafica.html'
             }
         ];
 
-        let projects = JSON.parse(localStorage.getItem('ciao_marco_projects')) || initialProjects;
+        let projects = JSON.parse(localStorage.getItem('ciao_marco_projects_v2')) || initialProjects;
         let activeStatusFilter = 'all';
 
         // Init App
@@ -410,7 +400,7 @@
 
         // Save data to localStorage
         function saveProjects() {
-            localStorage.setItem('ciao_marco_projects', JSON.stringify(projects));
+            localStorage.setItem('ciao_marco_projects_v2', JSON.stringify(projects));
             renderProjects();
         }
 
@@ -458,6 +448,12 @@
                     const card = document.createElement('div');
                     card.className = 'bg-dark-card border border-dark-border card-glow rounded-2xl p-5 flex flex-col justify-between transition-all duration-200 group';
                     
+                    const externalLinkHtml = project.link 
+                        ? `<a href="${escapeHtml(project.link)}" target="_blank" title="Apri Progetto" class="p-1.5 text-zinc-400 hover:text-brand-400 rounded-lg hover:bg-dark-surface transition-colors">
+                               <i data-lucide="external-link" class="w-4 h-4"></i>
+                           </a>` 
+                        : '';
+
                     card.innerHTML = `
                         <div class="space-y-3">
                             <div class="flex items-center justify-between">
@@ -483,6 +479,7 @@
                             </div>
 
                             <div class="flex items-center space-x-1">
+                                ${externalLinkHtml}
                                 <button onclick="openDetailsModal('${project.id}')" title="Dettagli" class="p-1.5 text-zinc-400 hover:text-white rounded-lg hover:bg-dark-surface transition-colors">
                                     <i data-lucide="eye" class="w-4 h-4"></i>
                                 </button>
@@ -563,25 +560,38 @@
         function handleFormSubmit(e) {
             e.preventDefault();
 
-            const id = document.getElementById('project-id').value || Date.now().toString();
+            const id = document.getElementById('project-id').value;
             const title = document.getElementById('form-title').value.trim();
             const category = document.getElementById('form-category').value;
             const status = document.getElementById('form-status').value;
             const date = document.getElementById('form-date').value;
             const link = document.getElementById('form-link').value.trim();
-            const rawTags = document.getElementById('form-tags').value;
+            const tagsInput = document.getElementById('form-tags').value;
             const description = document.getElementById('form-description').value.trim();
 
-            const tags = rawTags ? rawTags.split(',').map(t => t.trim()).filter(t => t !== '') : [];
-            const existingIndex = projects.findIndex(p => p.id === id);
-            const projectData = { id, title, category, status, date, link, tags, description };
+            const tags = tagsInput
+                ? tagsInput.split(',').map(t => t.trim()).filter(t => t !== '')
+                : [];
 
-            if (existingIndex > -1) {
-                projects[existingIndex] = projectData;
-                showToast('Lavoro aggiornato con successo!');
+            if (id) {
+                const index = projects.findIndex(p => p.id === id);
+                if (index !== -1) {
+                    projects[index] = { id, title, category, status, date, link, tags, description };
+                    showToast('Lavoro aggiornato con successo!');
+                }
             } else {
-                projects.unshift(projectData);
-                showToast('Nuovo lavoro creato con successo!');
+                const newProject = {
+                    id: Date.now().toString(),
+                    title,
+                    category,
+                    status,
+                    date,
+                    link,
+                    tags,
+                    description
+                };
+                projects.unshift(newProject);
+                showToast('Nuovo lavoro aggiunto!');
             }
 
             saveProjects();
@@ -608,98 +618,87 @@
 
         // Delete Project
         function deleteProject(id) {
-            const project = projects.find(p => p.id === id);
-            if (!project) return;
-
-            if (confirm(`Sei sicuro di voler eliminare il lavoro "${project.title}"?`)) {
+            if (confirm('Sei sicuro di voler eliminare questo lavoro?')) {
                 projects = projects.filter(p => p.id !== id);
                 saveProjects();
-                showToast('Lavoro eliminato!');
+                showToast('Lavoro eliminato.');
             }
         }
 
-        // Details Modal View
+        // Details Modal Controls
         function openDetailsModal(id) {
             const project = projects.find(p => p.id === id);
             if (!project) return;
 
             document.getElementById('detail-category').textContent = project.category;
             document.getElementById('detail-title').textContent = project.title;
-            document.getElementById('detail-description').textContent = project.description || 'Nessuna descrizione fornita.';
-            
-            const statusElem = document.getElementById('detail-status');
-            if (project.status === 'completed') {
-                statusElem.textContent = 'Completato';
-                statusElem.className = 'text-emerald-400 font-semibold';
+            document.getElementById('detail-description').textContent = project.description || 'Nessuna descrizione inserita.';
+            document.getElementById('detail-date').textContent = project.date ? formatDate(project.date) : 'Nessuna scadenza';
+
+            const statusEl = document.getElementById('detail-status');
+            if (project.status === 'planned') {
+                statusEl.textContent = 'Pianificato';
+                statusEl.className = 'font-medium mt-0.5 inline-block text-blue-400';
             } else if (project.status === 'in-progress') {
-                statusElem.textContent = 'In Corso';
-                statusElem.className = 'text-amber-400 font-semibold';
+                statusEl.textContent = 'In Corso';
+                statusEl.className = 'font-medium mt-0.5 inline-block text-amber-400';
             } else {
-                statusElem.textContent = 'Pianificato';
-                statusElem.className = 'text-blue-400 font-semibold';
+                statusEl.textContent = 'Completato';
+                statusEl.className = 'font-medium mt-0.5 inline-block text-emerald-400';
             }
 
-            document.getElementById('detail-date').textContent = project.date ? formatDate(project.date) : 'Non specificata';
-
             const tagsContainer = document.getElementById('detail-tags');
-            tagsContainer.innerHTML = project.tags.length > 0 
-                ? project.tags.map(t => `<span class="bg-dark-card border border-dark-border text-zinc-300 text-[10px] px-2 py-0.5 rounded-md">${escapeHtml(t)}</span>`).join('')
-                : '<span class="text-zinc-500 text-xs">Nessun tag</span>';
+            tagsContainer.innerHTML = project.tags.length > 0
+                ? project.tags.map(tag => `<span class="bg-dark-card border border-dark-border text-zinc-300 text-[11px] px-2.5 py-1 rounded-lg">${escapeHtml(tag)}</span>`).join('')
+                : '<span class="text-zinc-500 italic">Nessun tag</span>';
 
             const linkContainer = document.getElementById('detail-link-container');
-            const linkElem = document.getElementById('detail-link');
-            if(project.link) {
-                linkElem.href = project.link;
+            const linkEl = document.getElementById('detail-link');
+            if (project.link) {
+                linkEl.href = project.link;
                 linkContainer.classList.remove('hidden');
             } else {
                 linkContainer.classList.add('hidden');
             }
 
-            const detailsModal = document.getElementById('details-modal');
-            detailsModal.classList.remove('pointer-events-none', 'opacity-0');
-            detailsModal.classList.add('opacity-100');
+            const modal = document.getElementById('details-modal');
+            modal.classList.remove('pointer-events-none', 'opacity-0');
+            modal.classList.add('opacity-100');
+            lucide.createIcons();
         }
 
         function closeDetailsModal() {
-            const detailsModal = document.getElementById('details-modal');
-            detailsModal.classList.add('opacity-0', 'pointer-events-none');
-            detailsModal.classList.remove('opacity-100');
+            const modal = document.getElementById('details-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.classList.remove('opacity-100');
         }
 
         // Toast Notification
         function showToast(message) {
             const toast = document.getElementById('toast');
             document.getElementById('toast-message').textContent = message;
-            
+
             toast.classList.remove('translate-y-10', 'opacity-0', 'pointer-events-none');
             toast.classList.add('translate-y-0', 'opacity-100');
 
             setTimeout(() => {
-                toast.classList.remove('translate-y-0', 'opacity-100');
                 toast.classList.add('translate-y-10', 'opacity-0', 'pointer-events-none');
-            }, 2500);
+                toast.classList.remove('translate-y-0', 'opacity-100');
+            }, 3000);
         }
 
-        // Utilities
-        function formatDate(dateString) {
-            if (!dateString) return '';
-            const options = { year: 'numeric', month: 'short', day: 'numeric' };
-            return new Date(dateString).toLocaleDateString('it-IT', options);
+        // Helpers
+        function formatDate(dateStr) {
+            const [year, month, day] = dateStr.split('-');
+            return `${day}/${month}/${year}`;
         }
 
-        function escapeHtml(str) {
-            if (!str) return '';
-            return str.replace(/[&<>"']/g, function(m) {
-                return {
-                    '&': '&amp;',
-                    '<': '&lt;',
-                    '>': '&gt;',
-                    '"': '&quot;',
-                    "'": '&#039;'
-                }[m];
-            });
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
     </script>
 </body>
 </html>
-
