@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Calcolatrice</title>
+  <title>Calcolatrice 1.0</title>
   <style>
     * {
       box-sizing: border-box;
@@ -21,24 +21,44 @@
       min-height: 100vh;
     }
 
-    .calculator-card {
+    .container {
       background-color: #1e1e1e;
       border: 1px solid #2a2a2a;
       border-radius: 12px;
       padding: 24px;
       width: 100%;
-      max-width: 320px;
+      max-width: 340px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
     }
 
-    .input-group {
+    h1 {
+      font-size: 22px;
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .grid {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
       margin-bottom: 20px;
     }
 
-    input[type="text"] {
+    .input-group, .result-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 12px;
+      color: #888888;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    input[type="number"], input[type="text"] {
       width: 100%;
       padding: 12px;
       background-color: #2a2a2a;
@@ -50,15 +70,23 @@
       transition: border-color 0.2s;
     }
 
-    input[type="text"]:focus {
+    input[type="number"]:focus, input[type="text"]:focus {
       border-color: #e50914;
     }
 
-    .button-grid {
+    #result {
+      background-color: #121212;
+      border-color: #2a2a2a;
+      font-size: 22px;
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .buttons-row {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     button {
@@ -77,72 +105,64 @@
       background-color: #e50914;
       border-color: #e50914;
     }
-
-    .result-box {
-      background-color: #121212;
-      border: 1px solid #2a2a2a;
-      border-radius: 6px;
-      padding: 16px;
-      text-align: right;
-    }
-
-    .result-box span {
-      display: block;
-      font-size: 12px;
-      color: #888888;
-      margin-bottom: 4px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    h2#out {
-      font-size: 24px;
-      font-weight: 600;
-      word-break: break-all;
-    }
   </style>
 </head>
 <body>
 
-  <div class="calculator-card">
-    <div class="input-group">
-      <input type="text" id="n1" placeholder="Numero 1">
-      <input type="text" id="n2" placeholder="Numero 2">
+  <div class="container">
+    <h1>Calcolatrice 1.0</h1>
+    
+    <div class="grid">
+      <div class="input-group">
+        <label for="num1">Primo numero</label>
+        <input type="number" id="num1">
+      </div>
+      <div class="input-group">
+        <label for="num2">Secondo numero</label>
+        <input type="number" id="num2">
+      </div>
     </div>
 
-    <div class="button-grid">
+    <div class="buttons-row">
       <button onclick="calcola('+')">+</button>
       <button onclick="calcola('-')">-</button>
-      <button onclick="calcola('*')">×</button>
-      <button onclick="calcola('/')">÷</button>
+      <button onclick="calcola('*')">*</button>
+      <button onclick="calcola('/')">/</button>
     </div>
 
-    <div class="result-box">
-      <span>Risultato</span>
-      <h2 id="out">0</h2>
+    <div class="result-group">
+      <label for="result">Risultato</label>
+      <input type="text" id="result">
     </div>
   </div>
 
   <script>
     function calcola(op) {
-      let a = Number(document.getElementById('n1').value);
-      let b = Number(document.getElementById('n2').value);
-      let ris = 0;
+      const num1 = parseFloat(document.getElementById('num1').value);
+      const num2 = parseFloat(document.getElementById('num2').value);
+      const risultato = document.getElementById('result');
 
-      if (op == '+') ris = a + b;
-      if (op == '-') ris = a - b;
-      if (op == '*') ris = a * b;
-      if (op == '/') {
-        if (b == 0) {
-          ris = "Impossibile";
-        } else {
-          ris = a / b;
-        }
+      switch (op) {
+        case '+':
+          risultato.value = num1 + num2;
+          break;
+        case '-':
+          risultato.value = num1 - num2;
+          break;
+        case '*':
+          risultato.value = num1 * num2;
+          break;
+        case '/':
+          if (num2 == 0) {
+            risultato.value = "Impossibile";
+          } else {
+            risultato.value = num1 / num2;
+          }
+          break;
       }
-
-      document.getElementById('out').innerText = ris;
     }
   </script>
 
 </body>
 </html>
+
