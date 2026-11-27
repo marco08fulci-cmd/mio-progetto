@@ -6,151 +6,150 @@
             box-sizing: border-box;
         }
         html {
-            background: radial-gradient(circle at top, #1e293b 0%, #090d16 100%);
+            background-color: #f4efe6;
+            background-image: radial-gradient(#d6cbb9 1px, transparent 1px);
+            background-size: 20px 20px;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: Verdana, Geneva, sans-serif;
         }
         body {
-            background-color: #111827;
-            border: 1px solid #1f2937;
-            border-top: 3px solid #10b981;
-            border-radius: 20px;
-            padding: 36px 32px;
+            background-color: #fffdf9;
+            border: 2px solid #2c2520;
+            border-radius: 6px;
+            padding: 36px 30px;
             width: 100%;
-            max-width: 420px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 25px rgba(16, 185, 129, 0.08);
-            color: #f3f4f6;
+            max-width: 440px;
+            box-shadow: 8px 8px 0px #2c2520;
+            color: #2c2520;
             margin: 0;
         }
         h1 {
-            font-size: 24px;
-            font-weight: 800;
-            text-align: center;
-            margin: 0 0 8px 0;
-            color: #ffffff;
-            letter-spacing: -0.5px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 26px;
+            font-weight: bold;
+            text-align: left;
+            margin: 0 0 6px 0;
+            color: #1c1714;
+            border-bottom: 2px solid #d97706;
+            padding-bottom: 8px;
         }
         h4 {
-            font-size: 14px;
-            font-weight: 400;
-            text-align: center;
-            margin: 0 0 26px 0;
-            color: #9ca3af;
+            font-size: 13px;
+            font-weight: normal;
+            text-align: left;
+            margin: 10px 0 24px 0;
+            color: #5c5046;
             line-height: 1.5;
         }
         input {
             width: 100%;
-            padding: 14px 16px;
+            padding: 12px 14px;
             margin-bottom: 14px;
-            background-color: #0b0f19;
-            border: 1px solid #374151;
-            border-radius: 12px;
-            color: #f9fafb;
-            font-size: 15px;
+            background-color: #f9f6f0;
+            border: 2px solid #cbbba8;
+            border-radius: 4px;
+            color: #2c2520;
+            font-size: 14px;
             outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            transition: border-color 0.2s, background-color 0.2s;
         }
         input::placeholder {
-            color: #6b7280;
+            color: #8c7d70;
         }
         input:focus {
-            border-color: #10b981;
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
-            background-color: #0f172a;
+            border-color: #d97706;
+            background-color: #ffffff;
         }
         button {
             width: 100%;
-            padding: 14px;
-            margin-top: 6px;
-            background: linear-gradient(135deg, #10b981, #059669);
-            border: none;
-            border-radius: 12px;
-            color: #022c22;
-            font-size: 15px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            padding: 13px;
+            margin-top: 4px;
+            background-color: #d97706;
+            border: 2px solid #2c2520;
+            border-radius: 4px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
-            transition: transform 0.15s, box-shadow 0.2s, filter 0.2s;
+            box-shadow: 3px 3px 0px #2c2520;
+            transition: transform 0.1s, box-shadow 0.1s, background-color 0.2s;
         }
         button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.4);
-            filter: brightness(1.08);
+            background-color: #b45309;
         }
         button:active {
-            transform: translateY(0);
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #2c2520;
         }
         p {
-            margin: 24px 0 8px 0;
+            margin: 24px 0 6px 0;
             font-size: 11px;
-            font-weight: 700;
+            font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #9ca3af;
+            letter-spacing: 1px;
+            color: #6b5e53;
         }
-        #risultato {
-            margin: 0 0 24px 0;
-            padding: 16px;
-            min-height: 54px;
-            background-color: #090d16;
-            border: 1px solid #065f46;
-            border-radius: 12px;
-            font-family: "Fira Code", "Courier New", Courier, monospace;
-            font-size: 17px;
+        #boxOutputCifrato {
+            margin: 0 0 22px 0;
+            padding: 14px;
+            min-height: 50px;
+            background-color: #fef3c7;
+            border: 2px dashed #d97706;
+            border-radius: 4px;
+            font-family: "Lucida Console", Monaco, monospace;
+            font-size: 16px;
             text-transform: none;
-            letter-spacing: 1.5px;
-            color: #34d399;
+            letter-spacing: 1px;
+            color: #78350f;
             word-break: break-all;
-            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
         }
         a {
-            display: inline-block;
+            display: block;
             width: 100%;
             text-align: center;
-            margin-top: 12px;
-            padding: 13px;
-            background-color: transparent;
-            border: 1px solid #374151;
-            border-radius: 12px;
-            color: #d1d5db;
+            margin-top: 10px;
+            padding: 11px;
+            background-color: #efe9df;
+            border: 1px solid #cbbba8;
+            border-radius: 4px;
+            color: #2c2520;
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            transition: all 0.2s;
+            font-size: 13px;
+            font-weight: bold;
+            transition: background-color 0.2s;
         }
         a:hover {
-            background-color: #1f2937;
-            color: #ffffff;
-            border-color: #6b7280;
+            background-color: #e2d8c8;
         }
     </style>
     <script>
-        function cifraMessaggio() {
-            var messaggio = document.getElementById("inputTesto").value;
-            var salto = parseFloat(document.getElementById("chiave").value);
-            var totaleCaratteri = messaggio.length;
-            var testoCifrato = "";
-            for (let k = 0; k < messaggio.length; k++) {
-                var carattere = String.fromCharCode(messaggio.charCodeAt(k) + salto);
-                testoCifrato = testoCifrato + carattere;
+        function codificaTesto() {
+            var fraseInserita = document.getElementById("campoTestoChiaro").value;
+            var numeroScarto = parseFloat(document.getElementById("campoChiave").value);
+            var lunghezzaFrase = fraseInserita.length;
+            var stringaCodificata = "";
+            for (let indice = 0; indice < fraseInserita.length; indice++) {
+                var singoloCarattere = String.fromCharCode(fraseInserita.charCodeAt(indice) + numeroScarto);
+                stringaCodificata = stringaCodificata + singoloCarattere;
             }
-            document.getElementById("risultato").innerHTML = testoCifrato;
+            document.getElementById("boxOutputCifrato").innerHTML = stringaCodificata;
         }
     </script>
 </head>
 <body>
     <h1>Criptare la parola</h1>
     <h4>Inserisci il testo e il numero con cui criptare la parola</h4>
-    <input type="text" id="inputTesto" placeholder="Testo da criptare...">
-    <input type="number" id="chiave" placeholder="Valore di spostamento...">
-    <button onclick="cifraMessaggio()">Cripta</button>
+    <input type="text" id="campoTestoChiaro" placeholder="Testo da criptare...">
+    <input type="number" id="campoChiave" placeholder="Valore di spostamento...">
+    <button onclick="codificaTesto()">Cripta</button>
     <p>messaggio criptato:</p>
-    <p id="risultato"></p>
-    <a href="https://samuriva09-commits.github.io/scuola/cifrario-di-cesare/decripta.html"> Decripta la parola</a>
+    <p id="boxOutputCifrato"></p>
+    <a href="https://samuriva09-commits.github.io/scuola/cifrario-di-cesare/decripta.html">Decripta la parola</a>
 </body>
 </html>
