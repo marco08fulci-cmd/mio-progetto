@@ -1,52 +1,155 @@
 <!DOCTYPE html>
-<html lang="it">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Il Cifrario di Cesare - Cripta</title>
-</head>
-<body>
-
-    <h1>Il Cifrario di Cesare</h1>
-    <h2>Cripta frase</h2>
-
-    <p>Frase originale:</p>
-    <input type="text" id="frase" value="ciao sono marco">
-
-    <p>Scostamento:</p>
-    <input type="number" id="numero" value="3">
-
-    <br><br>
-    <button onclick="cripta()">Cripta</button>
-
-    <p>Frase criptata: <b id="risultato"></b></p>
-
-    <a href="decripta.html">Vai a Decripta</a>
-
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html {
+            background: radial-gradient(circle at top, #1e293b 0%, #090d16 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        body {
+            background-color: #111827;
+            border: 1px solid #1f2937;
+            border-top: 3px solid #10b981;
+            border-radius: 20px;
+            padding: 36px 32px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 25px rgba(16, 185, 129, 0.08);
+            color: #f3f4f6;
+            margin: 0;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 800;
+            text-align: center;
+            margin: 0 0 8px 0;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+        h4 {
+            font-size: 14px;
+            font-weight: 400;
+            text-align: center;
+            margin: 0 0 26px 0;
+            color: #9ca3af;
+            line-height: 1.5;
+        }
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+            background-color: #0b0f19;
+            border: 1px solid #374151;
+            border-radius: 12px;
+            color: #f9fafb;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input::placeholder {
+            color: #6b7280;
+        }
+        input:focus {
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+            background-color: #0f172a;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 6px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border: none;
+            border-radius: 12px;
+            color: #022c22;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.2s, filter 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.4);
+            filter: brightness(1.08);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        p {
+            margin: 24px 0 8px 0;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #9ca3af;
+        }
+        #criptata {
+            margin: 0 0 24px 0;
+            padding: 16px;
+            min-height: 54px;
+            background-color: #090d16;
+            border: 1px solid #065f46;
+            border-radius: 12px;
+            font-family: "Fira Code", "Courier New", Courier, monospace;
+            font-size: 17px;
+            text-transform: none;
+            letter-spacing: 1.5px;
+            color: #34d399;
+            word-break: break-all;
+            box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
+        }
+        a {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            margin-top: 12px;
+            padding: 13px;
+            background-color: transparent;
+            border: 1px solid #374151;
+            border-radius: 12px;
+            color: #d1d5db;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        a:hover {
+            background-color: #1f2937;
+            color: #ffffff;
+            border-color: #6b7280;
+        }
+    </style>
     <script>
-        function cripta() {
-            var testo = document.getElementById("frase").value.toLowerCase();
-            var shift = parseInt(document.getElementById("numero").value);
-            var alfabeto = "abcdefghijklmnopqrstuvwxyz";
-            var finale = "";
-
-            for (var i = 0; i < testo.length; i++) {
-                var lettera = testo[i];
-                var pos = alfabeto.indexOf(lettera);
-
-                switch (pos) {
-                    case -1:
-                        finale = finale + lettera;
-                        break;
-                    default:
-                        var nuovaPos = (pos + shift) % 26;
-                        finale = finale + alfabeto[nuovaPos];
-                        break;
-                }
-            }
-
-            document.getElementById("risultato").innerText = finale;
+        function cripta(){
+            var parola = document.getElementById("testo1").value;
+            var spostamento = parseFloat(document.getElementById("numero").value);
+            var lunghezza = parola.length;
+            var criptata = "";
+            for (let i = 0; i < parola.length; i++) {
+                var lettera = String.fromCharCode(parola.charCodeAt(i) + spostamento);
+                criptata = criptata+lettera}
+        document.getElementById("criptata").innerHTML = criptata
         }
     </script>
-
+</head>
+<body>
+    <h1>Criptare la parola</h1>
+    <h4>Inserisci il testo e il numero con cui criptare la parola</h4>
+    <input type="text" id="testo1" placeholder="Testo da criptare...">
+    <input type="number" id="numero" placeholder="Valore di spostamento...">
+    <button onclick="cripta()">Cripta</button>
+    <p>messaggio criptato:</p>
+    <p id="criptata"></p>
+    <a href="https://samuriva09-commits.github.io/scuola/cifrario-di-cesare/decripta.html"> Decripta la parola</a>
 </body>
 </html>
