@@ -93,7 +93,7 @@
             letter-spacing: 1.5px;
             color: #9ca3af;
         }
-        #criptata {
+        #risultato {
             margin: 0 0 24px 0;
             padding: 16px;
             min-height: 54px;
@@ -130,26 +130,27 @@
         }
     </style>
     <script>
-        function cripta(){
-            var parola = document.getElementById("testo1").value;
-            var spostamento = parseFloat(document.getElementById("numero").value);
-            var lunghezza = parola.length;
-            var criptata = "";
-            for (let i = 0; i < parola.length; i++) {
-                var lettera = String.fromCharCode(parola.charCodeAt(i) + spostamento);
-                criptata = criptata+lettera}
-        document.getElementById("criptata").innerHTML = criptata
+        function cifraMessaggio() {
+            var messaggio = document.getElementById("inputTesto").value;
+            var salto = parseFloat(document.getElementById("chiave").value);
+            var totaleCaratteri = messaggio.length;
+            var testoCifrato = "";
+            for (let k = 0; k < messaggio.length; k++) {
+                var carattere = String.fromCharCode(messaggio.charCodeAt(k) + salto);
+                testoCifrato = testoCifrato + carattere;
+            }
+            document.getElementById("risultato").innerHTML = testoCifrato;
         }
     </script>
 </head>
 <body>
     <h1>Criptare la parola</h1>
     <h4>Inserisci il testo e il numero con cui criptare la parola</h4>
-    <input type="text" id="testo1" placeholder="Testo da criptare...">
-    <input type="number" id="numero" placeholder="Valore di spostamento...">
-    <button onclick="cripta()">Cripta</button>
+    <input type="text" id="inputTesto" placeholder="Testo da criptare...">
+    <input type="number" id="chiave" placeholder="Valore di spostamento...">
+    <button onclick="cifraMessaggio()">Cripta</button>
     <p>messaggio criptato:</p>
-    <p id="criptata"></p>
+    <p id="risultato"></p>
     <a href="https://samuriva09-commits.github.io/scuola/cifrario-di-cesare/decripta.html"> Decripta la parola</a>
 </body>
 </html>
