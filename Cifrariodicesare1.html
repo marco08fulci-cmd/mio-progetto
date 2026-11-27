@@ -6,126 +6,129 @@
             box-sizing: border-box;
         }
         html {
-            background-color: #f4efe6;
-            background-image: radial-gradient(#d6cbb9 1px, transparent 1px);
+            background-color: #050a07;
+            background-image: radial-gradient(#0f291a 1px, transparent 1px);
             background-size: 20px 20px;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            font-family: Verdana, Geneva, sans-serif;
+            font-family: "Consolas", "Courier New", monospace;
         }
         body {
-            background-color: #fffdf9;
-            border: 2px solid #2c2520;
-            border-radius: 6px;
-            padding: 36px 30px;
+            background-color: #0b140f;
+            border: 2px solid #22c55e;
+            border-radius: 0px;
+            padding: 24px 40px;
             width: 100%;
-            max-width: 440px;
-            box-shadow: 8px 8px 0px #2c2520;
-            color: #2c2520;
+            max-width: 780px;
+            box-shadow: 10px 10px 0px #14532d;
+            color: #bbf7d0;
             margin: 0;
         }
         h1 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 26px;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 24px;
             font-weight: bold;
             text-align: left;
             margin: 0 0 6px 0;
-            color: #1c1714;
-            border-bottom: 2px solid #d97706;
-            padding-bottom: 8px;
+            color: #4ade80;
+            border-bottom: 2px solid #16a34a;
+            padding-bottom: 6px;
         }
         h4 {
             font-size: 13px;
             font-weight: normal;
             text-align: left;
-            margin: 10px 0 24px 0;
-            color: #5c5046;
-            line-height: 1.5;
+            margin: 8px 0 18px 0;
+            color: #86efac;
+            line-height: 1.4;
         }
         input {
             width: 100%;
-            padding: 12px 14px;
-            margin-bottom: 14px;
-            background-color: #f9f6f0;
-            border: 2px solid #cbbba8;
-            border-radius: 4px;
-            color: #2c2520;
+            padding: 11px 14px;
+            margin-bottom: 10px;
+            background-color: #050a07;
+            border: 2px solid #15803d;
+            border-radius: 0px;
+            color: #4ade80;
+            font-family: "Consolas", "Courier New", monospace;
             font-size: 14px;
             outline: none;
             transition: border-color 0.2s, background-color 0.2s;
         }
         input::placeholder {
-            color: #8c7d70;
+            color: #2e6f40;
         }
         input:focus {
-            border-color: #d97706;
-            background-color: #ffffff;
+            border-color: #4ade80;
+            background-color: #08120c;
         }
         button {
             width: 100%;
-            padding: 13px;
+            padding: 12px;
             margin-top: 4px;
-            background-color: #d97706;
-            border: 2px solid #2c2520;
-            border-radius: 4px;
-            color: #ffffff;
+            background-color: #16a34a;
+            border: 2px solid #4ade80;
+            border-radius: 0px;
+            color: #050a07;
+            font-family: "Consolas", "Courier New", monospace;
             font-size: 14px;
             font-weight: bold;
             letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
-            box-shadow: 3px 3px 0px #2c2520;
+            box-shadow: 4px 4px 0px #052e16;
             transition: transform 0.1s, box-shadow 0.1s, background-color 0.2s;
         }
         button:hover {
-            background-color: #b45309;
+            background-color: #22c55e;
         }
         button:active {
             transform: translate(2px, 2px);
-            box-shadow: 1px 1px 0px #2c2520;
+            box-shadow: 2px 2px 0px #052e16;
         }
         p {
-            margin: 24px 0 6px 0;
+            margin: 18px 0 6px 0;
             font-size: 11px;
             font-weight: bold;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #6b5e53;
+            color: #4ade80;
         }
         #boxOutputCifrato {
-            margin: 0 0 22px 0;
-            padding: 14px;
-            min-height: 50px;
-            background-color: #fef3c7;
-            border: 2px dashed #d97706;
-            border-radius: 4px;
+            margin: 0 0 16px 0;
+            padding: 12px 14px;
+            min-height: 44px;
+            background-color: #050a07;
+            border: 2px solid #22c55e;
+            border-radius: 0px;
             font-family: "Lucida Console", Monaco, monospace;
             font-size: 16px;
             text-transform: none;
             letter-spacing: 1px;
-            color: #78350f;
+            color: #86efac;
             word-break: break-all;
         }
         a {
             display: block;
             width: 100%;
             text-align: center;
-            margin-top: 10px;
-            padding: 11px;
-            background-color: #efe9df;
-            border: 1px solid #cbbba8;
-            border-radius: 4px;
-            color: #2c2520;
+            margin-top: 8px;
+            padding: 10px;
+            background-color: #08120c;
+            border: 2px solid #15803d;
+            border-radius: 0px;
+            color: #4ade80;
             text-decoration: none;
             font-size: 13px;
             font-weight: bold;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s, color 0.2s;
         }
         a:hover {
-            background-color: #e2d8c8;
+            background-color: #14532d;
+            color: #bbf7d0;
         }
     </style>
     <script>
@@ -143,13 +146,13 @@
     </script>
 </head>
 <body>
-    <h1>Criptare la parola</h1>
-    <h4>Inserisci il testo e il numero con cui criptare la parola</h4>
-    <input type="text" id="campoTestoChiaro" placeholder="Testo da criptare...">
-    <input type="number" id="campoChiave" placeholder="Valore di spostamento...">
-    <button onclick="codificaTesto()">Cripta</button>
-    <p>messaggio criptato:</p>
+    <h1>Codificatore di Messaggi</h1>
+    <h4>Scrivi una frase e scegli la chiave numerica per nasconderla</h4>
+    <input type="text" id="campoTestoChiaro" placeholder="Scrivi qui la frase in chiaro...">
+    <input type="number" id="campoChiave" placeholder="Inserisci la chiave numerica...">
+    <button onclick="codificaTesto()">Codifica ora</button>
+    <p>Risultato codificato:</p>
     <p id="boxOutputCifrato"></p>
-    <a href="https://samuriva09-commits.github.io/scuola/cifrario-di-cesare/decripta.html">Decripta la parola</a>
+    <a href="https://samuriva09-commits.github.io/scuola/cifrario-di-cesare/decripta.html">Passa al decodificatore</a>
 </body>
 </html>
