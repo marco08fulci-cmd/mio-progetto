@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Il Cifrario di Cesare - Cripta</title>
+</head>
+<body>
+
+    <h1>Il Cifrario di Cesare</h1>
+    <h2>Cripta frase</h2>
+
+    <p>Frase originale:</p>
+    <input type="text" id="frase" value="ciao sono dennis">
+
+    <p>Scostamento:</p>
+    <input type="number" id="numero" value="3">
+
+    <br><br>
+    <button onclick="cripta()">Cripta</button>
+
+    <p>Frase criptata: <b id="risultato"></b></p>
+
+    <a href="decripta.html">Vai a Decripta</a>
+
+    <script>
+        function cripta() {
+            var testo = document.getElementById("frase").value.toLowerCase();
+            var shift = parseInt(document.getElementById("numero").value);
+            var alfabeto = "abcdefghijklmnopqrstuvwxyz";
+            var finale = "";
+
+            for (var i = 0; i < testo.length; i++) {
+                var lettera = testo[i];
+                var pos = alfabeto.indexOf(lettera);
+
+                switch (pos) {
+                    case -1:
+                        finale = finale + lettera;
+                        break;
+                    default:
+                        var nuovaPos = (pos + shift) % 26;
+                        finale = finale + alfabeto[nuovaPos];
+                        break;
+                }
+            }
+
+            document.getElementById("risultato").innerText = finale;
+        }
+    </script>
+
+</body>
+</html>
